@@ -18,11 +18,11 @@ This project is maintained under **PW Institute of Innovation – Open Source** 
 ### Installation
 
 ```bash
-git clone https://github.com/iamshkzahid/Code-Editor-Live.git
+git clone git@github.com:PW-IOI-Tech/code-editor-live.git
 ```
 
 ```bash
-cd Code-Editor-Live
+cd code-editor-live
 open index.html
 ```
 
@@ -31,7 +31,7 @@ open index.html
 ## Project Structure
 
 ```text
-Code-Editor-Live/
+code-editor-live/
 ├── src/
 │   ├── index.html
 │   ├── styles.css
@@ -137,7 +137,7 @@ This helps us triage and respond faster.
 
 ## Credits
 
-- **Original Author(s):** Name(s) / Github handle(s)
+- **Original Author(s):** [Zahid Shaikh](https://github.com/iamshkzahid)
 - **Maintainers:** See repository contributors
 
 ## Contributing
@@ -154,9 +154,4 @@ See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 
 ## License
 
-This project is open-source and available under the MIT License.
-
-## Maintained By
-
-Zahid Shaikh  
-PW Institute of Innovation – Open Source
+Add your license information here.
