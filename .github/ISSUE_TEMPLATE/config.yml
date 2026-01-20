@@ -1,0 +1,10 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/ORG_NAME/REPO_NAME/discussions
+    about: Please ask questions or start discussions here.
+
+  - name: 📖 Documentation
+    url: https://github.com/ORG_NAME/REPO_NAME#readme
+    about: Check the documentation before creating an issue.
