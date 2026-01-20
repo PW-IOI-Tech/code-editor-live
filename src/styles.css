@@ -310,3 +310,45 @@ label{
 .align{
      margin-top: 15px;
 }
+.footer {
+     margin-top: 20px;
+     padding: 18px 12px;
+     border-top: 1px solid rgba(255,255,255,0.12);
+     background: rgba(0, 0, 0, 0.2);
+   }
+   
+   .footer-content {
+     max-width: 1200px;
+     margin: 0 auto;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     align-items: center;
+     text-align: center;
+   }
+   
+   .footer-content p {
+     font-size: 14px;
+     color: var(--muted);
+   }
+   
+   .social-links {
+     display: flex;
+     gap: 16px;
+     flex-wrap: wrap;
+     justify-content: center;
+   }
+   
+   .social-links a {
+     font-size: 14px;
+     color: var(--brand);
+     text-decoration: none;
+     font-weight: 600;
+     transition: color 0.2s ease, transform 0.2s ease;
+   }
+   
+   .social-links a:hover {
+     color: var(--brand-2);
+     transform: translateY(-2px);
+   }
+   
