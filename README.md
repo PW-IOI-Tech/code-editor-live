@@ -1,6 +1,7 @@
-# Project Name
+# Code Editor Live
 
-A short description of what this project does and why it exists.
+A lightweight, browser-based live code editor that allows users to write and preview HTML, CSS, and JavaScript in real time.
+This project exists to help learners and developers instantly see the output of their code without setting up a local environment.
 
 This project is maintained under **PW Institute of Innovation – Open Source** and follows real-world open-source development practices.
 
@@ -11,18 +12,18 @@ This project is maintained under **PW Institute of Innovation – Open Source** 
 ### Prerequisites
 
 - Git
-- Required language/runtime (Node.js / Python / Java, etc.)
+- A modern web browser (Chrome, Edge, Firefox, Safari)
+- No additional runtime or backend required
 
 ### Installation
 
 ```bash
-git clone https://github.com/ORG_NAME/REPO_NAME.git
+git clone https://github.com/iamshkzahid/Code-Editor-Live.git
 ```
 
 ```bash
-cd REPO_NAME
-install dependencies here
-run the project here
+cd Code-Editor-Live
+open index.html
 ```
 
 ---
@@ -30,10 +31,30 @@ run the project here
 ## Project Structure
 
 ```text
-src/
-docs/
-tests/
-.github/
+Code-Editor-Live/
+├── src/
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+├── docs/
+│   ├── screenshots/
+│   └── README.md
+├── tests/
+│   └── editor.test.md
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.yml        # Template for reporting bugs
+│   │   ├── chore.yml             # Template for maintenance tasks
+│   │   ├── config.yml            # Issue template configuration
+│   │   ├── documentation.yml     # Template for documentation updates
+│   │   └── feature_request.yml   # Template for feature requests
+│   └── pull_request_template.md
+├── .gitignore
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
+└── README.md
+
 ```
 
 ---
@@ -133,4 +154,4 @@ See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 
 ## License
 
-Add your license information here.
+This project is open-source and available under the MIT License.
