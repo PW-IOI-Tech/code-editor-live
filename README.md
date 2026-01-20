@@ -5,11 +5,6 @@ This project exists to help learners and developers instantly see the output of 
 
 This project is maintained under **PW Institute of Innovation – Open Source** and follows real-world open-source development practices.
 
-## Maintained By
-
-Zahid Shaikh  
-PW Institute of Innovation – Open Source
-
 ---
 
 ## Getting Started
@@ -160,3 +155,8 @@ See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 ## License
 
 This project is open-source and available under the MIT License.
+
+## Maintained By
+
+Zahid Shaikh  
+PW Institute of Innovation – Open Source
