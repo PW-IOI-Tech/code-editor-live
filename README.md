@@ -5,6 +5,11 @@ This project exists to help learners and developers instantly see the output of 
 
 This project is maintained under **PW Institute of Innovation – Open Source** and follows real-world open-source development practices.
 
+## Maintained By
+
+Zahid Shaikh  
+PW Institute of Innovation – Open Source
+
 ---
 
 ## Getting Started
