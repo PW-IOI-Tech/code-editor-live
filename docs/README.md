@@ -3,6 +3,12 @@ A browser-based HTML, CSS, and JavaScript editor built for quick experiments, le
 
 A lightweight browser-based code editor for HTML, CSS, and JavaScript with live preview.
 
+## Author
+
+**Zahid Shaikh**  
+B.Tech Computer Science – PW Institute of Innovation  
+GitHub: https://github.com/iamshkzahid
+
 ## Features
 - Live HTML/CSS/JS preview
 - Multiple editor themes

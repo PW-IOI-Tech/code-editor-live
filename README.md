@@ -155,3 +155,8 @@ See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 ## License
 
 This project is open-source and available under the MIT License.
+
+## Maintained By
+
+Zahid Shaikh  
+PW Institute of Innovation – Open Source

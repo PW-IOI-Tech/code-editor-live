@@ -1,5 +1,8 @@
 # Manual Test Cases – Code Editor Live
 
+**Author:** Zahid Shaikh  
+**Maintainer:** PW Institute of Innovation – Open Source
+
 ## UI Load Tests
 - [ ] Application loads without console errors
 - [ ] Editor UI renders correctly on page load
