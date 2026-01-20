@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="author" content="ZAHID SHAIKH">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Code Editor - by Zahid Shaikh</title>
+     <link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+     <header>
+          <div class="container row">
+               <div class="brand">
+
+                    <div class="logo"></div>
+                    <div class="title">Code Editor - Live in Browser</div>
+               </div>
+
+               <div class="row">
+
+                    <button class="btn secondary" id="saveBtn" title="Save work locally"><span>Save</span></button>
+
+                    <button class="btn secondary" id="loadBtn" title="Load work file"><span>Load</span></button>
+
+                    <input type="file" id="openFile" accept="application/json" hidden>
+               </div>
+          </div>
+     </header>
+
+     <main>
+          <!-- <aside class="card stack panel">
+
+               <h2>Task/Assignment</h2>
+               <textarea id="assignment" class="text" placeholder="Write the Task Description here..."></textarea>
+
+               <div class="stack">
+
+                    <label for="testArea">Validation tests (JavaScript Only - Optional)</label>
+
+                    <textarea id="testArea" class="text" placeholder="Write simple tests to Append after student's code to check the solution"></textarea>
+               </div>
+
+               <div class="muted">
+
+                    Tip: <span class="kbd">Ctrl</span> + <span class="kbd">S</span> to SAVE, <span class="kbd">Ctrl</span> + <span class="kbd">ENTER</span> to run.
+               </div>
+          </aside> -->
+
+          <section class="stack" id="web-only">
+               <div id="webEditors" class="stack panel card">
+
+                    <div class="row">
+
+                         <h2 class="align">HTML / CSS / JS</h2>
+
+                         <div class="editor-controls">
+
+                              <div class="controls-left">
+                                   <label class="control-label">Theme</label>
+                                   <select id="themeSelect" class="select">
+                                        <option value="dracula">Dracula</option>
+                                        <option value="monokai">Monokai</option>
+                                        <option value="github_dark">GitHub Dark</option>
+                                        <option value="tomorrow_night">Tomorrow Night</option>
+                                        <option value="nord_dark">Nord Dark</option>
+                                   </select>
+                              </div>
+
+                              <div class="controls-right">
+                                   <button class="zoom-btn" id="fontMinus" title="Decrease font size">A−</button>
+                                   <button class="zoom-btn" id="fontPlus" title="Increase font size">A+</button>
+                              </div>
+
+                         </div>
+
+                         <div class="row">
+
+                              <button class="btn ok" id="runWeb">Run</button>
+                              <button class="btn secondary" id="openPreview">Open preview in a New window</button>
+
+                         </div>
+
+
+                    </div>
+
+                    <div class="tabs" id="webTabs" role="tablist" aria-label="web editors">
+
+                         <button class="tab active" role="tab" aria-selected="true" tabindex="0" data-pane="html">HTML</button>
+
+                         <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="css">CSS</button>
+
+                         <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="js">JavaScript</button>
+
+                    </div>
+
+                    <div class="editor-wrap" data-pane="html">
+                         <div id="ed_html" class="editor"></div>
+                    </div>
+
+                    <div class="editor-wrap" data-pane="css" hidden>
+                         <div id="ed_css" class="editor"></div>
+                    </div>
+
+                    <div class="editor-wrap" data-pane="js" hidden>
+                         <div id="ed_js" class="editor"></div>
+                    </div>
+
+                    <div class="stack">
+
+                         <h3>Preview</h3>
+                         <iframe id="preview" class="preview" sandbox="allow-scripts allow-same-origin allow-modals"></iframe>
+                    </div>
+               </div>
+          </section>
+
+          <aside class="card panel stack">
+
+               <h2>Output</h2>
+               <div id="output" class="out" aria-live="polite"></div>
+
+               <div class="row">
+                    <button class="btn warn" id="runTests">Run with tests</button>
+                    <button class="btn err" id="clearOut">Clear Log</button>
+               </div>
+               <br>
+               <h3>Notes</h3>
+               <ul class="muted">
+
+                    <li class="label">Everything runs inside the browser.</li>
+                    <li class="label">You can save your work as a JSON file and restore it...</li>
+               </ul>
+               <br>
+               <h2>Task/Assignment</h2>
+               <textarea id="assignment" class="text" placeholder="Write the Task Description here..."></textarea>
+
+               <div class="stack">
+
+                    <label for="testArea">Validation tests (JavaScript Only - Optional)</label>
+
+                    <textarea id="testArea" class="text" placeholder="Write simple tests to Append after student's code to check the solution"></textarea>
+               </div>
+
+               <div class="muted">
+
+                    Tip: <span class="kbd">Ctrl</span> + <span class="kbd">S</span> to SAVE, <span class="kbd">Ctrl</span> + <span class="kbd">ENTER</span> to run.
+               </div>
+          </aside>
+     </main>
+
+     <div class="footer">&copy; ZAHID SHAIKH&trade; 2026 - All Rights Reserved.</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/ace.js"> 
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/ext-language_tools.min.js"></script>
+
+     <script src="script.js"></script>
+
+</body>
+</html>
