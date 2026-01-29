@@ -5,6 +5,11 @@ This project exists to help learners and developers instantly see the output of 
 
 This project is maintained under **PW Institute of Innovation – Open Source** and follows real-world open-source development practices.
 
+## Credits
+
+- **Author:** Zahid Shaikh (GitHub: iamshkzahid)
+- **Maintainer:** Zahid Shaikh
+
 ---
 
 ## Getting Started
