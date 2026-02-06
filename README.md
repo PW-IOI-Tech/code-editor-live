@@ -51,9 +51,9 @@ code-editor-live/
 ├── .gitignore
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
-├── index.html
 ├── LICENSE
 └── README.md
+├── index.html
 
 ```
 
