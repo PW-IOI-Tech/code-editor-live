@@ -33,7 +33,6 @@ open index.html
 ```text
 code-editor-live/
 ├── src/
-│   ├── index.html
 │   ├── styles.css
 │   └── script.js
 ├── docs/
@@ -49,6 +48,7 @@ code-editor-live/
 │   │   ├── documentation.yml     # Template for documentation updates
 │   │   └── feature_request.yml   # Template for feature requests
 │   └── pull_request_template.md
+├── index.html
 ├── .gitignore
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
