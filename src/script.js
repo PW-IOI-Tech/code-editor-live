@@ -37,6 +37,15 @@ function clearOut(){
 }
 
 $("#clearOut")?.addEventListener("click",clearOut);
+const AUTOSAVE_KEY = "zahid-codelab-autosave-v1";
+$("#clearProject")?.addEventListener("click", () => {
+    if (confirm("Are you sure you want to clear the current project and start over?")) {
+        localStorage.removeItem(AUTOSAVE_KEY);
+        localStorage.removeItem(STORAGE_KEY);
+        setDefaultContent();
+        log("Project cleared. Loaded default content.");
+    }
+});
 
 function makeEditor(id, mode) {
      
@@ -350,28 +359,64 @@ $("#openFile")?.addEventListener("change", async (e) => {
 });
 
 function initProject() {
-     let cache = null;
+    let cache = null;
 
-     try {
-          cache = JSON.parse(localStorage.getItem(STORAGE_KEY));
-     } catch (e) {
-          cache = null;
-     }
+    // Priority 1: Try to load from autosave
+    try {
+        const saved = localStorage.getItem(AUTOSAVE_KEY);
+        if (saved) {
+            cache = JSON.parse(saved);
+            log("Restored from auto-save.");
+        }
+    } catch (e) {
+        cache = null;
+        console.error("Could not parse autosave data:", e);
+    }
 
-     // If cache is missing OR invalid OR empty → load defaults
-     if (
-          !cache ||
-          typeof cache !== "object" ||
-          !cache.html ||
-          !cache.css ||
-          !cache.js
-     ) {
-          setDefaultContent();
-          log("Loaded default project (fresh start).");
-     } else {
-          loadProject(cache);
-     }
+    // Priority 2: If no autosave, try manually saved project
+    if (!cache) {
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                cache = JSON.parse(saved);
+                log("Restored from last manual save.");
+            }
+        } catch (e) {
+            cache = null;
+            console.error("Could not parse manual save data:", e);
+        }
+    }
+
+    // If cache is valid, load it. Otherwise, set defaults.
+    if (cache && typeof cache === "object") {
+        loadProject(cache);
+    } else {
+        setDefaultContent();
+        log("Loaded default project (fresh start).");
+    }
 }
+function autoSave() {
+    try {
+        const data = JSON.stringify(projectJSON());
+        localStorage.setItem(AUTOSAVE_KEY, data);
+    } catch (e) {
+        log("Auto-save failed: " + e, "error");
+    }
+}
+
+let autoSaveTimer = null;
+function debouncedAutoSave() {
+    clearTimeout(autoSaveTimer);
+    autoSaveTimer = setTimeout(autoSave, 600);
+}
+
+// Attach listeners for auto-saving
+ed_html.on("change", debouncedAutoSave);
+ed_css.on("change", debouncedAutoSave);
+ed_js.on("change", debouncedAutoSave);
+$("#assignment")?.addEventListener("input", debouncedAutoSave);
+$("#testArea")?.addEventListener("input", debouncedAutoSave);
+
 
 initProject();
 log('Ready — Web-only Editor (HTML/CSS/JS) ✨');
