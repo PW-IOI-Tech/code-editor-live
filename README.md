@@ -33,7 +33,6 @@ open index.html
 ```text
 code-editor-live/
 ├── src/
-│   ├── index.html
 │   ├── styles.css
 │   └── script.js
 ├── docs/
@@ -52,6 +51,7 @@ code-editor-live/
 ├── .gitignore
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
+├── index.html
 ├── LICENSE
 └── README.md
 
@@ -154,4 +154,5 @@ See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 
 ## License
 
-Add your license information here.
+This project is licensed under the MIT License. You are free to use, modify, and distribute this software. See the LICENSE file for full license text.
+
