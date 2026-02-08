@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <meta charset="UTF-8">
      <meta name="author" content="ZAHID SHAIKH">
@@ -7,6 +8,7 @@
      <title>Code Editor - by Zahid Shaikh</title>
      <link rel="stylesheet" href="styles.css?v=2">
 </head>
+
 <body>
      <header>
           <div class="container row">
@@ -21,6 +23,13 @@
                     <button class="btn secondary" id="saveBtn" title="Save work locally"><span>Save</span></button>
 
                     <button class="btn secondary" id="loadBtn" title="Load work file"><span>Load</span></button>
+
+                    <button class="btn secondary" id="themeBtn" title="Toggle Light/Dark Theme"><span
+                              id="themeIcon">🌙</span></button>
+
+                    <button class="btn secondary" id="githubBtn" title="Upload to GitHub"><span>GitHub</span></button>
+
+                    <button class="btn secondary" id="collabBtn" title="Invite Team"><span>Invite</span></button>
 
                     <input type="file" id="openFile" accept="application/json" hidden>
                </div>
@@ -85,11 +94,13 @@
 
                     <div class="tabs" id="webTabs" role="tablist" aria-label="web editors">
 
-                         <button class="tab active" role="tab" aria-selected="true" tabindex="0" data-pane="html">HTML</button>
+                         <button class="tab active" role="tab" aria-selected="true" tabindex="0"
+                              data-pane="html">HTML</button>
 
                          <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="css">CSS</button>
 
-                         <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="js">JavaScript</button>
+                         <button class="tab" role="tab" aria-selected="false" tabindex="-1"
+                              data-pane="js">JavaScript</button>
 
                     </div>
 
@@ -108,7 +119,8 @@
                     <div class="stack">
 
                          <h3>Preview</h3>
-                         <iframe id="preview" class="preview" sandbox="allow-scripts allow-same-origin allow-modals"></iframe>
+                         <iframe id="preview" class="preview"
+                              sandbox="allow-scripts allow-same-origin allow-modals"></iframe>
                     </div>
                </div>
           </section>
@@ -137,37 +149,41 @@
 
                     <label for="testArea">Validation tests (JavaScript Only - Optional)</label>
 
-                    <textarea id="testArea" class="text" placeholder="Write simple tests to Append after student's code to check the solution"></textarea>
+                    <textarea id="testArea" class="text"
+                         placeholder="Write simple tests to Append after student's code to check the solution"></textarea>
                </div>
 
                <div class="muted">
 
-                    Tip: <span class="kbd">Ctrl</span> + <span class="kbd">S</span> to SAVE, <span class="kbd">Ctrl</span> + <span class="kbd">ENTER</span> to run.
+                    Tip: <span class="kbd">Ctrl</span> + <span class="kbd">S</span> to SAVE, <span
+                         class="kbd">Ctrl</span> + <span class="kbd">ENTER</span> to run.
                </div>
           </aside>
      </main>
 
      <footer class="footer">
           <div class="footer-content">
-            <p>
-              &copy; 2026 <strong>Zahid Shaikh</strong>™ · All Rights Reserved
-            </p>
-        
-            <div class="social-links">
-              <a href="https://github.com/iamshkzahid" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a href="https://www.linkedin.com/in/zahid-shaikh-b33119349/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a href="mailto:iamzahidshk@gmail.com">Email</a>
-            </div>
+               <p>
+                    &copy; 2026 <strong>Zahid Shaikh</strong>™ · All Rights Reserved
+               </p>
+
+               <div class="social-links">
+                    <a href="https://github.com/iamshkzahid" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://www.linkedin.com/in/zahid-shaikh-b33119349/" target="_blank"
+                         rel="noopener noreferrer">LinkedIn</a>
+                    <a href="mailto:iamzahidshk@gmail.com">Email</a>
+               </div>
           </div>
-        </footer>
+     </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/ace.js"> 
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/ace.js">
 
-</script>
+     </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/ext-language_tools.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/ext-language_tools.min.js"></script>
 
      <script src="script.js"></script>
 
 </body>
+
 </html>
