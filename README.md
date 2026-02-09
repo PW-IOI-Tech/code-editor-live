@@ -52,8 +52,8 @@ code-editor-live/
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE
-└── README.md
-├── index.html
+├── README.md
+└── index.html
 
 ```
 
