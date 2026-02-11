@@ -134,9 +134,15 @@ h2,h3{
      color: #0b111f;
      font-weight: 700;
      padding: 10px 14px;
-     border: 12px;
+     border-radius: 12px;
      cursor: pointer;
      box-shadow: 0 10px 24px rgba(96, 165, 250, 0.35);
+     transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover{
+     transform: translateY(-2px);
+     box-shadow: 0 12px 28px rgba(96, 165, 250, 0.45);
 }
 
 .btn.secondary{
@@ -144,6 +150,11 @@ h2,h3{
      border: 1px solid rgba(255, 255, 255, 0.15);
      color: var(--txt);
      box-shadow: none;
+}
+
+.btn.secondary:hover{
+     background: rgba(255, 255, 255, 0.05);
+     border-color: rgba(125, 211, 252, 0.4);
 }
 
 .btn.warn{
@@ -185,12 +196,82 @@ textarea.text{
      cursor: pointer;
      font-weight: 700;
      color: #FFF;
+     transition: all 0.2s ease;
+}
+
+.tab:hover{
+     background: rgba(255, 255, 255, 0.08);
+     border-color: rgba(125, 211, 252, 0.3);
 }
 
 .tab.active{
      background: linear-gradient(180deg, rgba(125, 211, 252, 0.18), rgba(96, 165, 250, 0.18));
      color: #00FF00 !important;
+     border-color: rgba(125, 211, 252, 0.4);
 }
+
+/* ============ SPLIT-SCREEN LAYOUT ============ */
+
+.editor-preview-container{
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     transition: all 0.3s ease;
+}
+
+.editor-preview-container.split-mode{
+     flex-direction: row;
+     gap: 0;
+}
+
+.editors-section{
+     flex: 1;
+     min-width: 0; /* Important for flex items */
+}
+
+.preview-section{
+     flex: 1;
+     min-width: 0;
+     display: flex;
+     flex-direction: column;
+}
+
+/* Resize Handle */
+.resize-handle{
+     width: 8px;
+     background: rgba(255, 255, 255, 0.05);
+     cursor: col-resize;
+     position: relative;
+     transition: background 0.2s ease;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.resize-handle:hover{
+     background: rgba(125, 211, 252, 0.15);
+}
+
+.resize-handle-bar{
+     width: 2px;
+     height: 40px;
+     background: rgba(125, 211, 252, 0.4);
+     border-radius: 2px;
+}
+
+.resize-handle.dragging{
+     background: rgba(125, 211, 252, 0.25);
+}
+
+.preview-header{
+     padding: 8px 0;
+}
+
+.preview-header h3{
+     margin: 0;
+}
+
+/* ============ EDITOR STYLES ============ */
 
 .editor-wrap{
      position: relative;
@@ -204,6 +285,20 @@ textarea.text{
 .editor{
      inline-size: 100%;
      block-size: 380px;
+}
+
+/* In split mode, adjust editor and preview heights */
+.editor-preview-container.split-mode .editor-wrap{
+     height: 500px;
+}
+
+.editor-preview-container.split-mode .editor{
+     height: 100%;
+}
+
+.editor-preview-container.split-mode .preview{
+     height: 100%;
+     flex: 1;
 }
 
 iframe.preview{
@@ -294,6 +389,7 @@ label{
 
      border-radius: 8px;
      cursor: pointer;
+     transition: all 0.2s ease;
 }
 
 
@@ -351,4 +447,19 @@ label{
      color: var(--brand-2);
      transform: translateY(-2px);
    }
-   
+
+   /* Mobile responsiveness for split view */
+   @media (max-width: 900px) {
+     .editor-preview-container.split-mode {
+          flex-direction: column;
+     }
+
+     .resize-handle {
+          display: none !important;
+     }
+
+     .editor-preview-container.split-mode .editor-wrap,
+     .editor-preview-container.split-mode .preview {
+          height: 300px;
+     }
+   }

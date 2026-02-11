@@ -5,7 +5,7 @@
      <meta name="author" content="ZAHID SHAIKH">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Code Editor - by Zahid Shaikh</title>
-     <link rel="stylesheet" href="styles.css?v=2">
+     <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
      <header>
@@ -28,24 +28,6 @@
      </header>
 
      <main>
-          <!-- <aside class="card stack panel">
-
-               <h2>Task/Assignment</h2>
-               <textarea id="assignment" class="text" placeholder="Write the Task Description here..."></textarea>
-
-               <div class="stack">
-
-                    <label for="testArea">Validation tests (JavaScript Only - Optional)</label>
-
-                    <textarea id="testArea" class="text" placeholder="Write simple tests to Append after student's code to check the solution"></textarea>
-               </div>
-
-               <div class="muted">
-
-                    Tip: <span class="kbd">Ctrl</span> + <span class="kbd">S</span> to SAVE, <span class="kbd">Ctrl</span> + <span class="kbd">ENTER</span> to run.
-               </div>
-          </aside> -->
-
           <section class="stack" id="web-only">
                <div id="webEditors" class="stack panel card">
 
@@ -77,6 +59,9 @@
 
                               <button class="btn ok" id="runWeb">Run</button>
                               <button class="btn secondary" id="openPreview">Open preview in a New window</button>
+                              <button class="btn secondary" id="toggleLayout" title="Toggle split-screen view">
+                                   <span id="layoutIcon">⚡</span> Split View
+                              </button>
 
                          </div>
 
@@ -93,23 +78,39 @@
 
                     </div>
 
-                    <div class="editor-wrap" data-pane="html">
-                         <div id="ed_html" class="editor"></div>
+                    <!-- Editor and Preview Container -->
+                    <div id="editorPreviewContainer" class="editor-preview-container">
+                         
+                         <!-- Editors Section -->
+                         <div id="editorsSection" class="editors-section">
+                              <div class="editor-wrap" data-pane="html">
+                                   <div id="ed_html" class="editor"></div>
+                              </div>
+
+                              <div class="editor-wrap" data-pane="css" hidden>
+                                   <div id="ed_css" class="editor"></div>
+                              </div>
+
+                              <div class="editor-wrap" data-pane="js" hidden>
+                                   <div id="ed_js" class="editor"></div>
+                              </div>
+                         </div>
+
+                         <!-- Resize Handle -->
+                         <div id="resizeHandle" class="resize-handle" hidden>
+                              <div class="resize-handle-bar"></div>
+                         </div>
+
+                         <!-- Preview Section -->
+                         <div id="previewSection" class="preview-section">
+                              <div class="preview-header">
+                                   <h3>Preview</h3>
+                              </div>
+                              <iframe id="preview" class="preview" sandbox="allow-scripts allow-same-origin allow-modals"></iframe>
+                         </div>
+
                     </div>
 
-                    <div class="editor-wrap" data-pane="css" hidden>
-                         <div id="ed_css" class="editor"></div>
-                    </div>
-
-                    <div class="editor-wrap" data-pane="js" hidden>
-                         <div id="ed_js" class="editor"></div>
-                    </div>
-
-                    <div class="stack">
-
-                         <h3>Preview</h3>
-                         <iframe id="preview" class="preview" sandbox="allow-scripts allow-same-origin allow-modals"></iframe>
-                    </div>
                </div>
           </section>
 
@@ -128,6 +129,7 @@
 
                     <li class="label">Everything runs inside the browser.</li>
                     <li class="label">You can save your work as a JSON file and restore it...</li>
+                    <li class="label">Use Split View for side-by-side editing and preview!</li>
                </ul>
                <br>
                <h2>Task/Assignment</h2>

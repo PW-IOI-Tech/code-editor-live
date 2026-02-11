@@ -272,6 +272,133 @@ ed_css.on("change", autoRunPreview);
 ed_js.on("change", autoRunPreview);
 
 
+// ==================== SPLIT-SCREEN FUNCTIONALITY =====================
+
+let isSplitMode = false;
+const container = $('#editorPreviewContainer');
+const resizeHandle = $('#resizeHandle');
+const editorsSection = $('#editorsSection');
+const previewSection = $('#previewSection');
+const toggleLayoutBtn = $('#toggleLayout');
+const layoutIcon = $('#layoutIcon');
+
+// Load saved layout preference
+const savedLayout = localStorage.getItem('editorLayout') || 'stacked';
+if (savedLayout === 'split') {
+     toggleSplitView(true);
+}
+
+function toggleSplitView(force = null) {
+     isSplitMode = force !== null ? force : !isSplitMode;
+     
+     if (isSplitMode) {
+          container.classList.add('split-mode');
+          resizeHandle.hidden = false;
+          layoutIcon.textContent = '📑';
+          toggleLayoutBtn.title = 'Switch to stacked view';
+          log('Split-screen mode enabled');
+     } else {
+          container.classList.remove('split-mode');
+          resizeHandle.hidden = true;
+          layoutIcon.textContent = '⚡';
+          toggleLayoutBtn.title = 'Switch to split-screen view';
+          log('Stacked mode enabled');
+     }
+     
+     // Save preference
+     localStorage.setItem('editorLayout', isSplitMode ? 'split' : 'stacked');
+     
+     // Resize all editors after layout change
+     setTimeout(() => {
+          Object.values(editors).forEach(ed => {
+               if (ed && ed.resize) {
+                    ed.resize(true);
+               }
+          });
+     }, 100);
+}
+
+toggleLayoutBtn?.addEventListener('click', () => toggleSplitView());
+
+// ==================== RESIZE FUNCTIONALITY =====================
+
+let isResizing = false;
+let startX = 0;
+let startWidthEditor = 0;
+let startWidthPreview = 0;
+
+resizeHandle?.addEventListener('mousedown', (e) => {
+     if (!isSplitMode) return;
+     
+     isResizing = true;
+     startX = e.clientX;
+     startWidthEditor = editorsSection.offsetWidth;
+     startWidthPreview = previewSection.offsetWidth;
+     
+     resizeHandle.classList.add('dragging');
+     document.body.style.cursor = 'col-resize';
+     document.body.style.userSelect = 'none';
+     
+     e.preventDefault();
+});
+
+document.addEventListener('mousemove', (e) => {
+     if (!isResizing) return;
+     
+     const delta = e.clientX - startX;
+     const containerWidth = container.offsetWidth;
+     const handleWidth = 8;
+     
+     // Calculate new widths
+     const newEditorWidth = startWidthEditor + delta;
+     const newPreviewWidth = startWidthPreview - delta;
+     
+     // Set minimum widths (30% of container)
+     const minWidth = containerWidth * 0.3;
+     
+     if (newEditorWidth >= minWidth && newPreviewWidth >= minWidth) {
+          const editorPercent = (newEditorWidth / containerWidth) * 100;
+          const previewPercent = (newPreviewWidth / containerWidth) * 100;
+          
+          editorsSection.style.flex = `0 0 ${editorPercent}%`;
+          previewSection.style.flex = `0 0 ${previewPercent}%`;
+          
+          // Save the split ratio
+          localStorage.setItem('splitRatio', editorPercent.toString());
+     }
+     
+     e.preventDefault();
+});
+
+document.addEventListener('mouseup', () => {
+     if (isResizing) {
+          isResizing = false;
+          resizeHandle.classList.remove('dragging');
+          document.body.style.cursor = '';
+          document.body.style.userSelect = '';
+          
+          // Resize editors after drag ends
+          setTimeout(() => {
+               Object.values(editors).forEach(ed => {
+                    if (ed && ed.resize) {
+                         ed.resize(true);
+                    }
+               });
+          }, 50);
+     }
+});
+
+// Restore saved split ratio
+const savedRatio = localStorage.getItem('splitRatio');
+if (savedRatio && isSplitMode) {
+     const editorPercent = parseFloat(savedRatio);
+     const previewPercent = 100 - editorPercent;
+     editorsSection.style.flex = `0 0 ${editorPercent}%`;
+     previewSection.style.flex = `0 0 ${previewPercent}%`;
+}
+
+// ==================== PROJECT MANAGEMENT =====================
+
 function projectJSON(){
      return{
           version: 1,
@@ -282,7 +409,8 @@ function projectJSON(){
           test: $("#testArea")?.value || "",
           html: ed_html.getValue(),
           css: ed_css.getValue(),
-          js: ed_js.getValue()
+          js: ed_js.getValue(),
+          layout: isSplitMode ? 'split' : 'stacked'
      };
 }
 
@@ -297,6 +425,11 @@ function loadProject(obj) {
           ed_css.setValue(obj.css || "",-1);
 
           ed_js.setValue(obj.js || "",-1);
+          
+          // Restore layout preference if saved in project
+          if (obj.layout) {
+               toggleSplitView(obj.layout === 'split');
+          }
 
           log("Web project loaded.");
      } catch(e){
@@ -309,12 +442,14 @@ function setDefaultContent() {
 <section class="card" style="max-width:520px;margin:24px auto;padding:18px;text-align:center">
   <h1>Welcome to Code Editor -by ZAHID SHAIKH</h1>
   <p>This example runs locally in the browser.</p>
+  <p>Try the new <strong>Split View</strong> feature! 🚀</p>
   <button id="btn">Try me</button>
 </section>`, -1);
 
      ed_css.setValue(`body{font-family:system-ui;background:#f7fafc;margin:0}
 h1{color:#0f172a}
-#btn{padding:.75rem 1rem;border:0;border-radius:10px;background:#60a5fa;color:#08111f;font-weight:700}`, -1);
+#btn{padding:.75rem 1rem;border:0;border-radius:10px;background:#60a5fa;color:#08111f;font-weight:700;cursor:pointer;transition:transform 0.2s}
+#btn:hover{transform:scale(1.05)}`, -1);
 
      ed_js.setValue(`document.getElementById('btn').addEventListener('click',()=>alert('Well done!'));
 console.log('Hello from JavaScript!');`, -1);
@@ -375,4 +510,4 @@ function initProject() {
 
 initProject();
 log('Ready — Web-only Editor (HTML/CSS/JS) ✨');
-   
+log('💡 Tip: Click "Split View" for side-by-side editing!');
