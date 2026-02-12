@@ -421,3 +421,4 @@ $("#testArea")?.addEventListener("input", debouncedAutoSave);
 initProject();
 log('Ready — Web-only Editor (HTML/CSS/JS) ✨');
    
+ 
