@@ -239,8 +239,26 @@ function buildwebSrcdoc(withTests=false){
      `;
 }
 
-function runWeb(withTests=false) {
+function runWeb(withTests = false) {
+     let scrollY = 0;
+
+     // Save current scroll position of preview
+     try {
+          scrollY = preview.contentWindow?.scrollY || 0;
+     } catch (e) {
+          scrollY = 0;
+     }
+
+     // Update iframe content
      preview.srcdoc = buildwebSrcdoc(withTests);
+
+     // Restore scroll position after reload
+     preview.onload = () => {
+          try {
+               preview.contentWindow.scrollTo(0, scrollY);
+          } catch (e) {}
+     };
+
      log(withTests ? "Run with Tests" : "Web preview updated.");
 }
 
