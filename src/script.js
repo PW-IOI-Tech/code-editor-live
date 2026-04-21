@@ -249,16 +249,17 @@ function runWeb(withTests = false) {
           scrollY = 0;
      }
 
-     // Update iframe content
-     preview.srcdoc = buildwebSrcdoc(withTests);
-
+     
      // Restore scroll position after reload
-     preview.onload = () => {
+     preview.addEventListener("load", () => {
           try {
                preview.contentWindow.scrollTo(0, scrollY);
           } catch (e) {}
-     };
-
+     }, { once: true });
+     
+     // Update iframe content
+     preview.srcdoc = buildwebSrcdoc(withTests);
+     
      log(withTests ? "Run with Tests" : "Web preview updated.");
 }
 
