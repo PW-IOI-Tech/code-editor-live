@@ -5,6 +5,32 @@ const out = $('#output');
 const preview = $("#preview");
 const STORAGE_KEY = "Zahid's-codelab-web";
 
+// ==================== SAVE STATUS ====================
+const saveStatus = $("#saveStatus");
+const saveStatusText = $("#saveStatusText");
+let isDirty = false;
+
+function updateSaveStatus() {
+     if (!saveStatus) return;
+     saveStatus.classList.toggle("dirty", isDirty);
+     if (saveStatusText) saveStatusText.textContent = isDirty ? "Unsaved changes" : "Saved";
+     saveStatus.title = isDirty ? "You have unsaved changes" : "All changes are saved";
+}
+
+function markDirty() {
+     if (!isDirty) {
+          isDirty = true;
+          updateSaveStatus();
+     }
+}
+
+function markSaved() {
+     if (isDirty) {
+          isDirty = false;
+          updateSaveStatus();
+     }
+}
+
 const escapeHtml = s => 
      String(s).replace(/[&<>"]/g, c => ({
           '&':"&amp;",
@@ -280,6 +306,14 @@ ed_html.on("change", autoRunPreview);
 ed_css.on("change", autoRunPreview);
 ed_js.on("change", autoRunPreview);
 
+ed_html.on("change", markDirty);
+ed_css.on("change", markDirty);
+ed_js.on("change", markDirty);
+
+["assignment", "testArea"].forEach(id => {
+     $("#" + id)?.addEventListener("input", markDirty);
+});
+
 
 function projectJSON(){
      return{
@@ -307,6 +341,7 @@ function loadProject(obj) {
 
           ed_js.setValue(obj.js || "",-1);
 
+          markSaved();
           log("Web project loaded.");
      } catch(e){
           log("Unable to load project. " + e,"error");
@@ -339,6 +374,7 @@ function saveProject() {
           a.download = "Code-web.json";
           a.click();
           log("Saved locally and downloaded JSON file")
+          markSaved();
      } catch(e){
           log("Unable to save: " + e,"error");
      }
@@ -373,7 +409,7 @@ function initProject() {
         console.error("Could not parse autosave data:", e);
     }
 
-    // Priority 2: If no autosave, try manually saved project
+// Priority 2: If no autosave, try manually saved project
     if (!cache) {
         try {
             const saved = localStorage.getItem(STORAGE_KEY);
@@ -387,13 +423,21 @@ function initProject() {
         }
     }
 
-    // If cache is valid, load it. Otherwise, set defaults.
-    if (cache && typeof cache === "object") {
-        loadProject(cache);
+    // If cache is missing OR invalid OR empty → load defaults
+    if (
+         !cache ||
+         typeof cache !== "object" ||
+         !cache.html ||
+         !cache.css ||
+         !cache.js
+    ) {
+         setDefaultContent();
+         log("Loaded default project (fresh start).");
     } else {
-        setDefaultContent();
-        log("Loaded default project (fresh start).");
+         loadProject(cache);
     }
+
+    markSaved();
 }
 function autoSave() {
     try {

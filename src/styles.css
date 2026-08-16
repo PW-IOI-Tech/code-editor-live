@@ -207,6 +207,37 @@ h2,h3{
      background: linear-gradient(180deg, #fb7185, #ef4444);
 }
 
+.save-status{
+     display: inline-flex;
+     align-items: center;
+     gap: 6px;
+     font-size: 13px;
+     font-weight: 600;
+     color: var(--ok);
+     background: rgba(34, 197, 94, 0.12);
+     border: 1px solid rgba(34, 197, 94, 0.35);
+     padding: 6px 12px;
+     border-radius: 999px;
+     white-space: nowrap;
+}
+
+.save-status .save-status-dot{
+     inline-size: 8px;
+     block-size: 8px;
+     border-radius: 50%;
+     background: var(--ok);
+}
+
+.save-status.dirty{
+     color: var(--warn);
+     background: rgba(234, 179, 8, 0.12);
+     border-color: rgba(234, 179, 8, 0.4);
+}
+
+.save-status.dirty .save-status-dot{
+     background: var(--warn);
+}
+
 .select, select, .text{
      background: rgba(255, 255, 255,0.03);
      border: 1px solid rgba(255, 255, 255, 0.12);
