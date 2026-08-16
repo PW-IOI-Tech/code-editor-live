@@ -54,7 +54,17 @@ body > header{
      margin-inline: auto;
      padding: 14px;
      justify-content: space-between;
+     gap: 10px;
 
+}
+
+.header-actions{
+     justify-content: flex-end;
+}
+
+.focus-switcher{
+     justify-content: flex-start;
+     padding-top: 0;
 }
 
 .brand{
@@ -81,15 +91,54 @@ main{
      max-width: 1516px;
      margin-inline: auto;
      padding: 18px;
-     display: grid; /*for designing and structuring 2-d Layouts in CSS */
-     grid-template-columns: 1fr 330px;
+     display: grid;
+     grid-template-columns: 1fr;
      gap: var(--gap);
 }
 
-@media (max-width: 1100px){
-     main {
-          grid-template-columns: 1fr;
-     }
+/* Split view: editors + preview side by side, output panel on the right */
+main[data-layout="split"]{
+     grid-template-columns: 1fr 330px;
+}
+
+main[data-layout="split"] .editor-and-preview{
+     grid-template-columns: 1fr 1fr;
+}
+
+/* Stacked / Focus view: single column flow */
+main[data-layout="stacked"] .editor-and-preview,
+main[data-layout="focus"] .editor-and-preview{
+     grid-template-columns: 1fr;
+}
+
+.editor-and-preview{
+     display: grid;
+     grid-template-columns: 1fr;
+     gap: var(--gap);
+     align-items: start;
+}
+
+.editors-column,
+.preview-column{
+     min-width: 0;
+     display: flex;
+     flex-direction: column;
+     gap: var(--gap);
+}
+
+/* Focus mode: show a single panel at a time */
+main[data-layout="focus"][data-focus="code"] .preview-column,
+main[data-layout="focus"][data-focus="code"] aside.panel{
+     display: none;
+}
+
+main[data-layout="focus"][data-focus="preview"] .editors-column,
+main[data-layout="focus"][data-focus="preview"] aside.panel{
+     display: none;
+}
+
+main[data-layout="focus"][data-focus="output"] #web-only{
+     display: none;
 }
 
 .card{
@@ -190,6 +239,46 @@ textarea.text{
 .tab.active{
      background: linear-gradient(180deg, rgba(125, 211, 252, 0.18), rgba(96, 165, 250, 0.18));
      color: #00FF00 !important;
+}
+
+.seg{
+     display: inline-flex;
+     align-items: center;
+     flex-wrap: wrap;
+     gap: 2px;
+     padding: 4px;
+     background: rgba(255,255,255,0.05);
+     border: 1px solid rgba(255,255,255,0.12);
+     border-radius: 12px;
+     width: fit-content;
+     max-width: 100%;
+}
+
+.seg[hidden]{
+     display: none;
+}
+
+.seg-btn{
+     appearance: none;
+     border: none;
+     background: transparent;
+     color: var(--muted);
+     font-weight: 700;
+     font-size: 13px;
+     line-height: 1;
+     padding: 7px 12px;
+     border-radius: 9px;
+     cursor: pointer;
+     transition: background 0.15s ease, color 0.15s ease;
+}
+
+.seg-btn:hover{
+     color: var(--txt);
+}
+
+.seg-btn.active{
+     background: linear-gradient(180deg, rgba(125, 211, 252, 0.22), rgba(96, 165, 250, 0.22));
+     color: var(--brand);
 }
 
 .editor-wrap{

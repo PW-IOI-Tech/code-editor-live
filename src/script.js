@@ -420,4 +420,81 @@ $("#testArea")?.addEventListener("input", debouncedAutoSave);
 
 initProject();
 log('Ready — Web-only Editor (HTML/CSS/JS) ✨');
+
+
+// ==================== ADAPTIVE LAYOUT MODES =====================
+const mainEl = $("main");
+const LAYOUT_KEY = "editorLayout";
+const FOCUS_KEY = "editorFocus";
+const layoutButtons = $$(".layout-switcher .seg-btn[data-layout]");
+const focusButtons = $$(".focus-switcher .seg-btn[data-focus]");
+const focusSwitcherEl = $(".focus-switcher");
+
+function resizeEditors() {
+     requestAnimationFrame(() => {
+          [ed_html, ed_css, ed_js].forEach((ed) => {
+               if (ed && ed.resize) {
+                    ed.resize(true);
+               }
+          });
+     });
+}
+
+function setFocusPanel(name) {
+     mainEl.dataset.focus = name;
+     focusButtons.forEach((b) => {
+          const on = b.dataset.focus === name;
+          b.classList.toggle("active", on);
+          b.setAttribute("aria-pressed", on);
+     });
+     resizeEditors();
+}
+
+function setLayout(mode, persist = true) {
+     mainEl.dataset.layout = mode;
+     layoutButtons.forEach((b) => {
+          const on = b.dataset.layout === mode;
+          b.classList.toggle("active", on);
+          b.setAttribute("aria-pressed", on);
+     });
+     if (focusSwitcherEl) {
+          focusSwitcherEl.hidden = mode !== "focus";
+     }
+     if (persist) {
+          localStorage.setItem(LAYOUT_KEY, mode);
+     }
+     resizeEditors();
+}
+
+$(".layout-switcher")?.addEventListener("click", (e) => {
+     const b = e.target.closest(".seg-btn");
+     if (!b) {
+          return;
+     }
+     setLayout(b.dataset.layout);
+});
+
+$(".focus-switcher")?.addEventListener("click", (e) => {
+     const b = e.target.closest(".seg-btn");
+     if (!b || !b.dataset.focus) {
+          return;
+     }
+     setFocusPanel(b.dataset.focus);
+     localStorage.setItem(FOCUS_KEY, b.dataset.focus);
+});
+
+const savedLayout = localStorage.getItem(LAYOUT_KEY);
+const savedFocus = localStorage.getItem(FOCUS_KEY) || "code";
+const userPickedLayout = !!savedLayout;
+
+const adaptiveLayout = () => (window.innerWidth < 900 ? "stacked" : "split");
+
+setLayout(savedLayout || adaptiveLayout(), !!savedLayout);
+setFocusPanel(savedFocus);
+
+window.addEventListener("resize", () => {
+     if (!userPickedLayout) {
+          setLayout(adaptiveLayout(), false);
+     }
+});
    

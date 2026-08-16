@@ -35,6 +35,17 @@
 - [ ] Ctrl / Cmd + Enter runs code
 - [ ] Ctrl / Cmd + S saves project
 
+## Adaptive Layout Modes
+- [ ] Layout switcher (Split / Stack / Focus) is visible in the header
+- [ ] Split view shows editors and preview side by side, output on the right
+- [ ] Stacked view flows vertically: editors, then preview, then output
+- [ ] Focus mode shows a single panel at a time (Code / Preview / Output)
+- [ ] Focus switcher appears only in Focus mode
+- [ ] Ace editors resize correctly during layout transitions
+- [ ] Chosen layout persists after page reload
+- [ ] Focus panel persists after page reload
+- [ ] First visit on a narrow viewport defaults to Stacked mode
+
 ## Cross-Browser
 - [ ] Works in Chrome
 - [ ] Works in Edge

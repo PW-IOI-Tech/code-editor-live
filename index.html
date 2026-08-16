@@ -5,7 +5,7 @@
      <meta name="author" content="ZAHID SHAIKH">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Code Editor - by Zahid Shaikh</title>
-     <link rel="stylesheet" href="./src/styles.css">
+     <link rel="stylesheet" href="./src/styles.css?v=3">
 </head>
 <body>
      <header>
@@ -16,7 +16,16 @@
                     <div class="title">Code Editor - Live in Browser</div>
                </div>
 
-               <div class="row">
+               <div class="row header-actions">
+
+                    <div class="seg layout-switcher" role="group" aria-label="Layout mode">
+
+                         <button class="seg-btn active" type="button" data-layout="split" title="Editors and preview side by side" aria-pressed="true">Split</button>
+
+                         <button class="seg-btn" type="button" data-layout="stacked" title="Vertical flow" aria-pressed="false">Stack</button>
+
+                         <button class="seg-btn" type="button" data-layout="focus" title="One panel at a time" aria-pressed="false">Focus</button>
+                    </div>
 
                     <button class="btn secondary" id="saveBtn" title="Save work locally"><span>Save</span></button>
 
@@ -25,9 +34,23 @@
                     <input type="file" id="openFile" accept="application/json" hidden>
                </div>
           </div>
+
+          <div class="container row focus-switcher" hidden>
+
+               <div class="seg" role="group" aria-label="Focused panel">
+
+                    <span class="control-label">Focus:</span>
+
+                    <button class="seg-btn active" type="button" data-focus="code" title="Show the code editors" aria-pressed="true">Code</button>
+
+                    <button class="seg-btn" type="button" data-focus="preview" title="Show the preview only" aria-pressed="false">Preview</button>
+
+                    <button class="seg-btn" type="button" data-focus="output" title="Show the output panel" aria-pressed="false">Output</button>
+               </div>
+          </div>
      </header>
 
-     <main>
+     <main data-layout="split" data-focus="code">
           <!-- <aside class="card stack panel">
 
                <h2>Task/Assignment</h2>
@@ -83,32 +106,41 @@
 
                     </div>
 
-                    <div class="tabs" id="webTabs" role="tablist" aria-label="web editors">
+                    <div class="editor-and-preview">
 
-                         <button class="tab active" role="tab" aria-selected="true" tabindex="0" data-pane="html">HTML</button>
+                         <div class="editors-column">
 
-                         <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="css">CSS</button>
+                              <div class="tabs" id="webTabs" role="tablist" aria-label="web editors">
 
-                         <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="js">JavaScript</button>
+                                   <button class="tab active" role="tab" aria-selected="true" tabindex="0" data-pane="html">HTML</button>
 
-                    </div>
+                                   <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="css">CSS</button>
 
-                    <div class="editor-wrap" data-pane="html">
-                         <div id="ed_html" class="editor"></div>
-                    </div>
+                                   <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="js">JavaScript</button>
 
-                    <div class="editor-wrap" data-pane="css" hidden>
-                         <div id="ed_css" class="editor"></div>
-                    </div>
+                              </div>
 
-                    <div class="editor-wrap" data-pane="js" hidden>
-                         <div id="ed_js" class="editor"></div>
-                    </div>
+                              <div class="editor-wrap" data-pane="html">
+                                   <div id="ed_html" class="editor"></div>
+                              </div>
 
-                    <div class="stack">
+                              <div class="editor-wrap" data-pane="css" hidden>
+                                   <div id="ed_css" class="editor"></div>
+                              </div>
 
-                         <h3>Preview</h3>
-                         <iframe id="preview" class="preview" sandbox="allow-scripts allow-same-origin allow-modals"></iframe>
+                              <div class="editor-wrap" data-pane="js" hidden>
+                                   <div id="ed_js" class="editor"></div>
+                              </div>
+                         </div>
+
+                         <div class="preview-column">
+
+                              <div class="stack">
+
+                                   <h3>Preview</h3>
+                                   <iframe id="preview" class="preview" sandbox="allow-scripts allow-same-origin allow-modals"></iframe>
+                              </div>
+                         </div>
                     </div>
                </div>
           </section>
@@ -167,7 +199,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/ext-language_tools.min.js"></script>
 
-     <script src="./src/script.js"></script>
+     <script src="./src/script.js?v=3"></script>
 
 </body>
 </html>
