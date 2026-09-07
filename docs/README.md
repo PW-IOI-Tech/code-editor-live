@@ -15,6 +15,7 @@ GitHub: https://github.com/iamshkzahid
 - Font zoom controls (A− / A+)
 - Auto-run preview
 - Save and load projects as JSON
+- Visual indicator for unsaved changes
 - Runs completely inside the browser
 
 ## Tech Stack

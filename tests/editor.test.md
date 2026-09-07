@@ -30,6 +30,16 @@
 - [ ] Project saves as JSON file
 - [ ] Saved file reloads correctly
 - [ ] Local storage restore works after refresh
+- [ ] Indicator shows "Saved" on initial load
+- [ ] Editing HTML changes the status to "Unsaved changes"
+- [ ] Editing CSS changes the status to "Unsaved changes"
+- [ ] Editing JavaScript changes the status to "Unsaved changes"
+- [ ] Editing the assignment / tests fields changes the status to "Unsaved changes"
+- [ ] Clicking the Save button changes the status to "Saved" after a successful save
+- [ ] Cmd / Ctrl + S saves and changes the status to "Saved"
+- [ ] Loading a project restores the "Saved" status
+- [ ] Initializing a project restores the "Saved" status
+- [ ] Refresh / load does not incorrectly show unsaved changes
 
 ## Keyboard Shortcuts
 - [ ] Ctrl / Cmd + Enter runs code
